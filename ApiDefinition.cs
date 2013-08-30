@@ -22,7 +22,7 @@ namespace HockeyApp
         void StartManager();
 
 		[Export ("crashManager")]
-		BITHockeyManager CrashManager { get; }
+		BITCrashManager CrashManager { get; }
     }
 
 	[BaseType (typeof (NSObject))]
