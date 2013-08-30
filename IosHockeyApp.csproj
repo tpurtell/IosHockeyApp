@@ -48,9 +48,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\HockeySDK" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\IconGradient.png">
       <Link>Resources\HockeySDKResources.bundle\IconGradient.png</Link>
     </BundleResource>
@@ -156,5 +153,13 @@
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings</Link>
     </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="libhockey.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="libhockey.linkwith.cs">
+      <DependentUpon>libhockey.a</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
