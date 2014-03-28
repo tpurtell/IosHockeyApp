@@ -1,0 +1,84 @@
+This really simply binding for iOS hockey app is good enough to let you get managed crash traces from your Xamarin.iOS app.   
+
+
+I use it by calling "EnableCrashReporting" from my AppDelegate.  Below you can find the code I use to integrate.
+
+===
+
+[DllImport ("libc")]
+private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
+
+enum Signal {
+	SIGBUS = 10,
+	SIGSEGV = 11
+}
+
+/// <summary>
+/// This method works around a problem with all iOS crash reporters.
+/// 
+/// Because they override signal handlers for SIGSEGV and SIGBUS,
+/// they break null reference exception handling in Mono.
+/// 
+/// We have to re-install Mono signal handlers.
+/// 
+/// Read more about this fix here:
+/// http://stackoverflow.com/a/14499336/458193
+/// </summary>
+static void EnableCrashReporting ()
+{
+	#if !DEBUG
+	IntPtr sigbus = Marshal.AllocHGlobal (512);
+	IntPtr sigsegv = Marshal.AllocHGlobal (512);
+
+	// Store Mono SIGSEGV and SIGBUS handlers
+	sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
+	sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
+
+	// Enable crash reporting libraries
+	EnableCrashReportingUnsafe ();
+
+	// Restore Mono SIGSEGV and SIGBUS handlers            
+	sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
+	sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+	#endif
+
+	AppDomain.CurrentDomain.UnhandledException +=
+		(sender, args) => ConvertToNsExceptionAndAbort(args.ExceptionObject, 0);
+	TaskScheduler.UnobservedTaskException += (sender, args) => ConvertToNsExceptionAndAbort(args.Exception, 1);
+	ExceptionSupport.UncaughtTaskExceptionHandler = ConvertToNsExceptionAndAbort;
+
+}
+
+private delegate void ReporterDelegate(IntPtr ex);
+
+private static void ConvertToNsExceptionAndAbort(object e)
+{
+	ConvertToNsExceptionAndAbort(e, 2);
+}
+private static void ConvertToNsExceptionAndAbort(object e, int from)
+{	
+	var name = ".NET crash";
+	var msg = e.ToString();
+	if(e is Exception) {
+		name = string.Format("{0}: {1}", e.GetType().FullName, (e as Exception).Message);
+	}
+	name = name.Replace("%", "%%");
+	msg = msg.Replace("%", "%%");
+	var nse = new NSException(name, msg, null);
+	var sel = new Selector("raise");
+	Messaging.void_objc_msgSend(nse.Handle, sel.Handle);
+}
+
+static void EnableCrashReportingUnsafe ()
+{
+	// Run your crash reporting library initialization code here--
+	// this example uses HockeyApp but it should work well
+	// with TestFlight or other libraries.
+
+	// Verify in documentation that your library of choice
+	// installs its sigaction hooks before leaving this method.
+	var manager = BITHockeyManager.SharedHockeyManager;
+	manager.Configure (MY_APP_ID_FROM_THE_HOCKEYAPP_PORTAL, _CrashLogReporter);
+	manager.CrashManager.Status = BITCrashManagerStatus.AutoSend;
+	manager.StartManager ();
+}	
