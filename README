@@ -3,7 +3,18 @@ This really simply binding for iOS hockey app is good enough to let you get mana
 
 I use it by calling "EnableCrashReporting" from my AppDelegate.  Below you can find the code I use to integrate.
 
-===
+=== All of this goes in my AppDelegate ===
+
+class CrashLogReporter : BITCrashManagerDelegate {
+	public override string GetApplicationLog (NSObject crashManager)
+	{
+		//Logger has an on disk log of the messages from the **last** session
+		//they get uploaded 
+		return Logger.LogText;
+	}
+}
+static CrashLogReporter _CrashLogReporter = new CrashLogReporter();
+
 
 [DllImport ("libc")]
 private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
