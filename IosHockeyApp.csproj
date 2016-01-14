@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7E800052-4271-43F5-ACF0-DAD664EB2536}</ProjectGuid>
     <ProjectTypeGuids>{F5B4F3BC-B597-4E2B-B552-EF5D8A32436F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Resources\HockeySDKResources.bundle\" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
@@ -48,6 +47,41 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
   <ItemGroup>
+    <ObjcBindingNativeLibrary Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\HockeySDK">
+      <Link>HockeySDK</Link>
+    </ObjcBindingNativeLibrary>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HockeySDK.linkwith.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Arrow.png">
+      <Link>Resources\HockeySDKResources.bundle\Arrow.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Arrow%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Arrow%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Arrow%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Arrow%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Blur.png">
+      <Link>Resources\HockeySDKResources.bundle\Blur.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Blur%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Blur%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Blur%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Blur%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Cancel.png">
+      <Link>Resources\HockeySDKResources.bundle\Cancel.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Cancel%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Cancel%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Cancel%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Cancel%403x.png</Link>
+    </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\IconGradient.png">
       <Link>Resources\HockeySDKResources.bundle\IconGradient.png</Link>
     </BundleResource>
@@ -57,26 +91,35 @@
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Info.plist">
       <Link>Resources\HockeySDKResources.bundle\Info.plist</Link>
     </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Ok.png">
+      <Link>Resources\HockeySDKResources.bundle\Ok.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Ok%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Ok%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Ok%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Ok%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Rectangle.png">
+      <Link>Resources\HockeySDKResources.bundle\Rectangle.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Rectangle%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Rectangle%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\Rectangle%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Rectangle%403x.png</Link>
+    </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\authorize_denied.png">
       <Link>Resources\HockeySDKResources.bundle\authorize_denied.png</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\authorize_denied%402x.png">
       <Link>Resources\HockeySDKResources.bundle\authorize_denied%402x.png</Link>
     </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\authorize_request.png">
-      <Link>Resources\HockeySDKResources.bundle\authorize_request.png</Link>
-    </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\authorize_request%402x.png">
-      <Link>Resources\HockeySDKResources.bundle\authorize_request%402x.png</Link>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\authorize_denied%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\authorize_denied%403x.png</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\bg.png">
       <Link>Resources\HockeySDKResources.bundle\bg.png</Link>
-    </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\buttonHighlight.png">
-      <Link>Resources\HockeySDKResources.bundle\buttonHighlight.png</Link>
-    </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\buttonHighlight%402x.png">
-      <Link>Resources\HockeySDKResources.bundle\buttonHighlight%402x.png</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\buttonRoundedDelete.png">
       <Link>Resources\HockeySDKResources.bundle\buttonRoundedDelete.png</Link>
@@ -102,17 +145,26 @@
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\buttonRoundedRegularHighlighted%402x.png">
       <Link>Resources\HockeySDKResources.bundle\buttonRoundedRegularHighlighted%402x.png</Link>
     </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActivity.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActivity%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity%402x.png</Link>
+    </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActivity%402x~ipad.png">
       <Link>Resources\HockeySDKResources.bundle\feedbackActivity%402x~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActivity%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity%403x.png</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActivity~ipad.png">
       <Link>Resources\HockeySDKResources.bundle\feedbackActivity~ipad.png</Link>
     </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActiviy.png">
-      <Link>Resources\HockeySDKResources.bundle\feedbackActiviy.png</Link>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\iconCamera.png">
+      <Link>Resources\HockeySDKResources.bundle\iconCamera.png</Link>
     </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\feedbackActiviy%402x.png">
-      <Link>Resources\HockeySDKResources.bundle\feedbackActiviy%402x.png</Link>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\iconCamera%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\iconCamera%402x.png</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\de.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\de.lproj\HockeySDK.strings</Link>
@@ -138,14 +190,14 @@
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\ja.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\ja.lproj\HockeySDK.strings</Link>
     </BundleResource>
+    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\nl.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\nl.lproj\HockeySDK.strings</Link>
+    </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\pt-PT.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\pt-PT.lproj\HockeySDK.strings</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\pt.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\pt.lproj\HockeySDK.strings</Link>
-    </BundleResource>
-    <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\ro.lproj\HockeySDK.strings">
-      <Link>Resources\HockeySDKResources.bundle\ro.lproj\HockeySDK.strings</Link>
     </BundleResource>
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\ru.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\ru.lproj\HockeySDK.strings</Link>
@@ -153,13 +205,5 @@
     <BundleResource Include="SDK\HockeySDK.embeddedframework\HockeySDK.framework\Versions\A\Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings</Link>
     </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ObjcBindingNativeLibrary Include="libhockey.a" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="libhockey.linkwith.cs">
-      <DependentUpon>libhockey.a</DependentUpon>
-    </Compile>
   </ItemGroup>
 </Project>

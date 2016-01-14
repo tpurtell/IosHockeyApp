@@ -1,7 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2014 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -33,6 +33,16 @@
 
 /**
  View controller allowing the user to write and send new feedback
+ 
+ To add this view controller to your own app and push it onto a navigation stack,
+ don't create the instance yourself, but use the following code to get a correct instance:
+ 
+     [[BITHockeyManager sharedHockeyManager].feedbackManager feedbackComposeViewController]
+ 
+ To show it modally, use the following code instead:
+ 
+     [[BITHockeyManager sharedHockeyManager].feedbackManager showFeedbackComposeView]
+
  */
 
 @interface BITFeedbackComposeViewController : UIViewController <UITextViewDelegate>
@@ -44,11 +54,12 @@
 
 
 /**
- Sets the `BITUpdateManagerDelegate` delegate.
+ Sets the `BITFeedbackComposeViewControllerDelegate` delegate.
+
+ The delegate is automatically set by using `[BITHockeyManager setDelegate:]`. You
+ should not need to set this delegate individually.
  
- When using `BITUpdateManager` to distribute updates of your beta or enterprise
- application, it is _REQUIRED_ to set this delegate and implement
- `[BITUpdateManagerDelegate customDeviceIdentifierForUpdateManager:]`!
+ @see `[BITHockeyManager setDelegate:`]
  */
 @property (nonatomic, weak) id<BITFeedbackComposeViewControllerDelegate> delegate;
 
@@ -59,13 +70,25 @@
 
 
 /**
+ Don't show the option to add images from the photo library
+ 
+ This is helpful if your application is landscape only, since the system UI for
+ selecting an image from the photo library is portrait only
+ */
+@property (nonatomic) BOOL hideImageAttachmentButton;
+
+/**
  An array of data objects that should be used to prefill the compose view content
  
- The follwoing data object classes are currently supported:
+ The following data object classes are currently supported:
  - NSString
  - NSURL
+ - UIImage
+ - NSData
+ - `BITHockeyAttachment`
  
- These are automatically concatenated to one text string.
+ These are automatically concatenated to one text string, while any images and NSData
+ objects are added as attachments to the feedback.
  
  @param items Array of data objects to prefill the feedback text message.
  */
